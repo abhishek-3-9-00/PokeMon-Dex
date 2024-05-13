@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import Landing from "./components/Landing/landing";
+import Layout from "./Layout/layout-wrapper";
+import LandingSearch from "./components/Landing/landing-search";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PokeMonsList from "./components/PokemonList/pokemon-list";
+import PokemonDetail from "./components/DetailPage/pokemon-detail-page";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Layout>
+        <ToastContainer position="top-center" stacked autoClose={700} />
+        <div className="h-full">
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/list" element={<PokeMonsList />} />
+            <Route path="/details" element={<PokemonDetail />} />
+          </Routes>
+        </div>
+      </Layout>
+    </Router>
   );
 }
 
